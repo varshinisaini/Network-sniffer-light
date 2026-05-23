@@ -1,0 +1,273 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  .page{display:flex;flex-direction:column;align-items:center;width:100%;padding:2rem 1rem 3rem;background:#fff;font-family:'DM Sans',sans-serif;color:#1a1a1a;}
+  .inner{width:100%;max-width:560px;}
+
+  .page-title{text-align:center;margin-bottom:2rem;}
+  .pt-eyebrow{display:inline-flex;align-items:center;gap:6px;background:#fff3eb;color:#b84d12;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:.5px solid #f5c4a0;margin-bottom:.75rem;}
+  .pt-h1{font-size:28px;font-weight:600;color:#111;line-height:1.2;margin-bottom:.5rem;}
+  .pt-sub{font-size:14px;color:#666;line-height:1.6;}
+  .prog-wrap{margin-top:1.25rem;background:#f0ece8;border-radius:20px;height:5px;}
+  .prog-fill{height:5px;border-radius:20px;background:#e8652a;width:0%;transition:width .5s ease;}
+  .prog-row{display:flex;justify-content:space-between;font-size:11px;color:#999;margin-top:5px;}
+
+  .tabs{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;}
+  .tab{font-family:'DM Sans',sans-serif;font-size:12px;padding:6px 13px;border-radius:20px;border:.5px solid #ddd;background:#fff;color:#666;cursor:pointer;transition:all .15s;}
+  .tab:hover{border-color:#e8652a;color:#e8652a;}
+  .tab.on{background:#e8652a;color:#fff;border-color:#e8652a;font-weight:500;}
+
+  .sec{display:none;animation:fi .3s ease;}
+  .sec.show{display:block;}
+  @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+  .card{background:#fff;border:.5px solid #e5e0da;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+  .card-h{font-size:14px;font-weight:600;color:#111;margin-bottom:.5rem;display:flex;align-items:center;gap:7px;}
+  .card-b{font-size:13px;color:#555;line-height:1.7;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;}
+  .stat{background:#faf8f6;border:.5px solid #ede8e2;border-radius:12px;padding:.9rem;text-align:center;}
+  .stat-n{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#e8652a;}
+  .stat-l{font-size:11px;color:#888;margin-top:3px;line-height:1.4;}
+
+  .type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem;}
+  .type-c{background:#faf8f6;border:.5px solid #ede8e2;border-radius:12px;padding:.9rem;}
+  .type-ic{font-size:20px;margin-bottom:6px;}
+  .type-t{font-size:13px;font-weight:600;color:#111;margin-bottom:3px;}
+  .type-d{font-size:12px;color:#777;line-height:1.45;}
+
+  .rflag{background:#fff8f6;border-left:3px solid #e8652a;border-radius:0 10px 10px 0;padding:.8rem 1rem;margin-bottom:.65rem;display:flex;gap:9px;align-items:flex-start;}
+  .rfi{font-size:16px;flex-shrink:0;margin-top:1px;}
+  .rft{font-size:12px;font-weight:600;color:#b84d12;margin-bottom:2px;}
+  .rfb{font-size:12px;color:#555;line-height:1.5;}
+
+  .email-box{background:#f9f7f5;border:.5px solid #e0dbd5;border-radius:12px;overflow:hidden;margin-bottom:1rem;}
+  .email-hd{background:#fff;border-bottom:.5px solid #e0dbd5;padding:.9rem 1.1rem;}
+  .ef{display:flex;gap:7px;margin-bottom:3px;font-size:12px;}
+  .el{color:#999;min-width:45px;}
+  .ev{color:#222;}
+  .susp{background:#ffe8e0;color:#b84d12;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:600;margin-left:3px;}
+  .email-bd{padding:1rem 1.1rem;font-size:12px;color:#333;line-height:1.7;}
+  .ann{display:inline-flex;align-items:center;background:#ffe0d6;color:#b84d12;font-size:10px;font-weight:600;padding:1px 6px;border-radius:8px;margin-left:3px;vertical-align:middle;}
+
+  .tactic{background:#fff;border:.5px solid #e5e0da;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:.65rem;display:flex;gap:10px;}
+  .tn{width:26px;height:26px;border-radius:50%;background:#fff3eb;color:#b84d12;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .tt{font-size:13px;font-weight:600;color:#111;margin-bottom:2px;}
+  .tb{font-size:12px;color:#555;line-height:1.55;}
+
+  .chk-list{list-style:none;padding:0;}
+  .chk-list li{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:.5px solid #f0ece8;font-size:13px;color:#333;line-height:1.5;}
+  .chk-list li:last-child{border-bottom:none;}
+  .chk-ic{width:19px;height:19px;border-radius:50%;background:#e8f5e9;color:#388e3c;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+
+  .qcard{background:#fff;border:.5px solid #e5e0da;border-radius:14px;padding:1.5rem;}
+  .qnum{font-size:11px;font-weight:600;color:#e8652a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;}
+  .qtxt{font-size:14px;font-weight:500;color:#111;margin-bottom:.9rem;line-height:1.5;}
+  .qopts{display:flex;flex-direction:column;gap:7px;}
+  .qo{font-family:'DM Sans',sans-serif;font-size:12px;text-align:left;padding:9px 13px;border-radius:10px;border:.5px solid #ddd;background:#fafafa;cursor:pointer;transition:all .15s;color:#333;}
+  .qo:hover:not(.done){border-color:#e8652a;background:#fff8f5;color:#b84d12;}
+  .qo.ok{background:#f0faf3;border-color:#4caf50;color:#2e7d32;font-weight:500;}
+  .qo.no{background:#fff3f3;border-color:#ef5350;color:#c62828;text-decoration:line-through;}
+  .qo.show{background:#f0faf3;border-color:#4caf50;color:#2e7d32;}
+  .qexp{margin-top:.9rem;background:#f5f5f3;border-radius:10px;padding:.8rem 1rem;font-size:12px;color:#444;line-height:1.6;display:none;}
+  .qexp.vis{display:block;animation:fi .3s ease;}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;}
+  .qsc{font-size:12px;color:#999;}
+  .btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:7px 16px;border-radius:20px;border:.5px solid #e8652a;background:#e8652a;color:#fff;cursor:pointer;transition:all .15s;}
+  .btn:hover{background:#cc5522;border-color:#cc5522;}
+  .btn.out{background:#fff;color:#e8652a;}
+  .btn.out:hover{background:#fff8f5;}
+
+  .score-wrap{text-align:center;padding:2rem 1rem;}
+  .sc-big{font-family:'Space Mono',monospace;font-size:52px;font-weight:700;color:#e8652a;line-height:1;margin-bottom:.4rem;}
+  .sc-lbl{font-size:15px;color:#444;margin-bottom:.9rem;}
+  .sc-fb{font-size:13px;color:#666;max-width:360px;margin:0 auto 1.5rem;line-height:1.6;}
+
+  .foot-nav{display:flex;justify-content:flex-end;margin-top:.75rem;}
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Phishing Awareness Training — interactive cybersecurity training module with quiz</h2>
+
+<div class="page">
+  <div class="inner">
+
+    <div class="page-title">
+      <div class="pt-eyebrow"><i class="ti ti-shield-lock" aria-hidden="true"></i> Cybersecurity Training</div>
+      <h1 class="pt-h1">Phishing Awareness Training</h1>
+      <p class="pt-sub">Identify, avoid, and report phishing attacks — the #1 entry point for data breaches worldwide.</p>
+      <div class="prog-wrap"><div class="prog-fill" id="pb"></div></div>
+      <div class="prog-row"><span id="pt">0% complete</span><span id="pm">0 / 5 sections</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" onclick="go('intro',0)">Introduction</button>
+      <button class="tab" onclick="go('rec',1)">Recognize Phishing</button>
+      <button class="tab" onclick="go('soc',2)">Social Engineering</button>
+      <button class="tab" onclick="go('tips',3)">Best Practices</button>
+      <button class="tab" onclick="go('quiz',4)">Quiz</button>
+    </div>
+
+    <div class="sec show" id="s-intro">
+      <div class="card">
+        <div class="card-h"><i class="ti ti-fish" aria-hidden="true" style="color:#e8652a;font-size:17px;"></i> What is phishing?</div>
+        <div class="card-b">Phishing is a cyberattack where criminals impersonate trusted entities — banks, employers, tech companies — to steal credentials, money, or personal data. It exploits human trust, not software.</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n">91%</div><div class="stat-l">of breaches start with phishing</div></div>
+        <div class="stat"><div class="stat-n">3.4B</div><div class="stat-l">phishing emails sent every day</div></div>
+        <div class="stat"><div class="stat-n">₹1.8L</div><div class="stat-l">avg. loss per victim in India</div></div>
+      </div>
+      <div class="type-grid">
+        <div class="type-c"><div class="type-ic">📧</div><div class="type-t">Email Phishing</div><div class="type-d">Fraudulent emails mimicking trusted brands with malicious links or attachments.</div></div>
+        <div class="type-c"><div class="type-ic">📱</div><div class="type-t">Smishing (SMS)</div><div class="type-d">Fake delivery alerts, bank OTPs, or prize notifications via text message.</div></div>
+        <div class="type-c"><div class="type-ic">📞</div><div class="type-t">Vishing (Voice)</div><div class="type-d">Attackers call pretending to be tech support, banks, or government officials.</div></div>
+        <div class="type-c"><div class="type-ic">🎯</div><div class="type-t">Spear Phishing</div><div class="type-d">Highly targeted attacks using personal details to appear credible.</div></div>
+      </div>
+      <div class="foot-nav"><button class="btn" onclick="go('rec',1)">Next: Recognize Phishing →</button></div>
+    </div>
+
+    <div class="sec" id="s-rec">
+      <div class="email-box">
+        <div class="email-hd">
+          <div class="ef"><span class="el">From:</span><span class="ev">support@paypa1-secure<span class="susp">⚠ fake domain</span>.com</span></div>
+          <div class="ef"><span class="el">To:</span><span class="ev">you@example.com</span></div>
+          <div class="ef"><span class="el">Subject:</span><span class="ev">🔴 Urgent: Your account has been limited</span></div>
+        </div>
+        <div class="email-bd">
+          Dear Customer,<br><br>
+          We detected <strong>unusual activity</strong> on your account. Access has been <strong>temporarily limited</strong>. <span class="ann">⚠ urgency</span><br><br>
+          Verify your identity within <strong>24 hours</strong> or your account will be permanently suspended. <span class="ann">⚠ threat + deadline</span><br><br>
+          <span style="color:#1a73e8;text-decoration:underline;">Click here → http://paypa1-secure.ru/verify</span> <span class="ann">⚠ suspicious URL</span><br><br>
+          — PayPal Security Team <span class="ann">⚠ impersonation</span>
+        </div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:.65rem;">Red flags to watch for:</div>
+      <div class="rflag"><div class="rfi">🔗</div><div><div class="rft">Suspicious links & domains</div><div class="rfb">Hover before clicking. Watch for misspellings ("paypa1"), unusual TLDs (.ru, .xyz), or extra subdomains.</div></div></div>
+      <div class="rflag"><div class="rfi">⏰</div><div><div class="rft">Artificial urgency</div><div class="rfb">"Act in 24 hours or lose access" is a manipulation tactic. Legitimate companies rarely threaten immediate closure.</div></div></div>
+      <div class="rflag"><div class="rfi">📝</div><div><div class="rft">Generic greetings</div><div class="rfb">"Dear Customer" instead of your name signals a mass phishing campaign. Also watch for odd grammar.</div></div></div>
+      <div class="rflag"><div class="rfi">🔒</div><div><div class="rft">Requests for sensitive info</div><div class="rfb">Legitimate organizations never ask for passwords, OTPs, or card numbers via email.</div></div></div>
+      <div class="rflag"><div class="rfi">📎</div><div><div class="rft">Unexpected attachments</div><div class="rfb">.zip, .exe, even .docx files can contain malware. Don't open attachments you weren't expecting.</div></div></div>
+      <div class="foot-nav"><button class="btn" onclick="go('soc',2)">Next: Social Engineering →</button></div>
+    </div>
+
+    <div class="sec" id="s-soc">
+      <div class="card" style="margin-bottom:.9rem;">
+        <div class="card-h"><i class="ti ti-brain" aria-hidden="true" style="color:#e8652a;font-size:17px;"></i> How attackers manipulate you</div>
+        <div class="card-b">Social engineering exploits human psychology — not software. Attackers don't hack systems; they hack people.</div>
+      </div>
+      <div class="tactic"><div class="tn">1</div><div><div class="tt">Authority</div><div class="tb">Impersonating a boss, IT, bank, or government. "This is Microsoft Support — your PC is infected. Give us access now."</div></div></div>
+      <div class="tactic"><div class="tn">2</div><div><div class="tt">Scarcity & urgency</div><div class="tb">"Your account deleted in 2 hours." Time pressure prevents rational thinking and forces rushed decisions.</div></div></div>
+      <div class="tactic"><div class="tn">3</div><div><div class="tt">Reciprocity</div><div class="tb">"We upgraded your plan for free — just verify your details." Offering something to create a sense of obligation.</div></div></div>
+      <div class="tactic"><div class="tn">4</div><div><div class="tt">Fear & threats</div><div class="tb">"We have photos of you. Pay ₹50,000 or we share them." Blackmail designed to paralyze your judgment.</div></div></div>
+      <div class="tactic"><div class="tn">5</div><div><div class="tt">Pretexting</div><div class="tb">A fake recruiter builds trust over weeks, then asks for your Aadhaar "for background verification."</div></div></div>
+      <div class="tactic"><div class="tn">6</div><div><div class="tt">Liking & trust</div><div class="tb">Building rapport before the ask — "I saw your Goa trip post! Anyway, can you approve this wire transfer?"</div></div></div>
+      <div class="foot-nav"><button class="btn" onclick="go('tips',3)">Next: Best Practices →</button></div>
+    </div>
+
+    <div class="sec" id="s-tips">
+      <div class="card">
+        <div class="card-h"><i class="ti ti-shield-check" aria-hidden="true" style="color:#4caf50;font-size:17px;"></i> Your protection checklist</div>
+        <ul class="chk-list">
+          <li><div class="chk-ic">✓</div><div><strong>Verify the sender</strong> — Check the full email address. "PayPal Support" can hide &lt;phish@evil.com&gt;.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Hover before clicking</strong> — Preview the real URL in your browser's status bar without any risk.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Enable MFA</strong> — Even if attackers steal your password, multi-factor authentication blocks login.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Go directly to the source</strong> — Type URLs manually. Never click email links for sensitive accounts.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Call to verify</strong> — If a colleague makes an unusual request, call them directly before acting.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Keep software updated</strong> — Patches protect against malware delivered through phishing links.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Use a password manager</strong> — It auto-fills only on the real domain, not lookalike phishing sites.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Never share OTPs</strong> — No bank, government, or company will ever call to ask for a one-time password.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Report suspicious emails</strong> — Use "Report Phishing" in your email client. It protects everyone.</div></li>
+          <li><div class="chk-ic">✓</div><div><strong>Slow down</strong> — Urgency is the trap. 30 extra seconds of verification could save your data and money.</div></li>
+        </ul>
+      </div>
+      <div class="foot-nav"><button class="btn" onclick="go('quiz',4)">Take the Quiz →</button></div>
+    </div>
+
+    <div class="sec" id="s-quiz">
+      <div class="qcard" id="qa">
+        <div class="qnum" id="qn">Question 1 of 5</div>
+        <div class="qtxt" id="qt"></div>
+        <div class="qopts" id="qop"></div>
+        <div class="qexp" id="qex"></div>
+        <div class="qnav">
+          <div class="qsc" id="qs">Score: 0 / 0</div>
+          <button class="btn" id="qnxt" onclick="nxt()" style="display:none;">Next →</button>
+        </div>
+      </div>
+      <div id="sa" style="display:none;">
+        <div class="qcard score-wrap">
+          <div class="sc-big" id="sb">0/5</div>
+          <div class="sc-lbl" id="sl"></div>
+          <div class="sc-fb" id="sf"></div>
+          <button class="btn" onclick="reset()">Retake quiz</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const vis=new Set([0]);
+function go(id,idx){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-'+id).classList.add('show');
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',i===idx));
+  vis.add(idx);
+  const p=Math.round(vis.size/5*100);
+  document.getElementById('pb').style.width=p+'%';
+  document.getElementById('pt').textContent=p+'% complete';
+  document.getElementById('pm').textContent=vis.size+' / 5 sections';
+}
+const qs=[
+  {q:"You receive an email from 'support@paypa1-secure.com' saying your order is held. What is the first red flag?",opts:["The email mentions an order","The domain 'paypa1-secure.com' is not Amazon's real domain","The email asks you to check your order","It was sent during business hours"],c:1,ex:"The sender domain uses '1' instead of 'l' — a classic phishing lookalike. Always check the full email address, not just the display name."},
+  {q:"An IT email says 'Your password expires in 1 hour — reset immediately or lose access.' This is an example of:",opts:["Normal security policy","Urgency manipulation — a social engineering tactic","A helpful reminder from your IT team","Two-factor authentication"],c:1,ex:"Extreme time pressure ('1 hour') is a social engineering tactic to prevent rational thinking. Legitimate IT policies give days of notice."},
+  {q:"Someone claiming to be from your bank calls and asks for the OTP sent to your phone 'for verification.' You should:",opts:["Give it — it's your bank","Give only the first 3 digits","Hang up and call the bank's official number","Ask them to call back tomorrow"],c:2,ex:"Banks NEVER ask for OTPs over the phone. This is vishing. Hang up and call the official number on the back of your card."},
+  {q:"The safest way to check a suspicious link in an email is to:",opts:["Click it to see where it goes","Copy-paste into notepad","Hover over it to preview the URL in your browser","Forward to a friend for their opinion"],c:2,ex:"Hovering reveals the real destination in the browser's status bar with zero risk. Never click a suspicious link to 'test' it."},
+  {q:"A LinkedIn 'recruiter' chats for 2 weeks then asks for your Aadhaar and PAN 'for background verification.' This is likely:",opts:["Standard recruitment process","A pretexting attack — building false trust before the real ask","Fine since they're on LinkedIn","Only suspicious if they ask for money"],c:1,ex:"This is pretexting — building a believable story over time. Legitimate employers verify documents only after a formal offer, via verified HR portals, never via chat."}
+];
+let cur=0,sc=0,ans=0;
+function load(){
+  const q=qs[cur];
+  document.getElementById('qn').textContent='Question '+(cur+1)+' of '+qs.length;
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('qex').classList.remove('vis');
+  document.getElementById('qnxt').style.display='none';
+  document.getElementById('qs').textContent='Score: '+sc+' / '+ans;
+  const op=document.getElementById('qop');op.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='qo';b.textContent=o;
+    b.onclick=()=>pick(i);
+    op.appendChild(b);
+  });
+}
+function pick(idx){
+  const q=qs[cur];
+  document.querySelectorAll('.qo').forEach(b=>{b.classList.add('done');b.onclick=null;});
+  ans++;
+  if(idx===q.c){document.querySelectorAll('.qo')[idx].classList.add('ok');sc++;}
+  else{document.querySelectorAll('.qo')[idx].classList.add('no');document.querySelectorAll('.qo')[q.c].classList.add('show');}
+  document.getElementById('qs').textContent='Score: '+sc+' / '+ans;
+  document.getElementById('qex').textContent='💡 '+q.ex;
+  document.getElementById('qex').classList.add('vis');
+  if(cur<qs.length-1)document.getElementById('qnxt').style.display='';
+  else setTimeout(showSc,1100);
+}
+function nxt(){cur++;load();}
+function showSc(){
+  document.getElementById('qa').style.display='none';
+  document.getElementById('sa').style.display='block';
+  document.getElementById('sb').textContent=sc+'/'+qs.length;
+  const p=Math.round(sc/qs.length*100);
+  document.getElementById('sl').textContent=p>=80?'🎉 Excellent — Phishing Defender!':p>=60?'👍 Good — Keep Practicing':'📖 Keep Learning';
+  document.getElementById('sf').textContent=p>=80?'Strong awareness of phishing tactics. Share this knowledge — you could be the first line of defence against a real attack.':p>=60?'You caught most threats. Review the social engineering and link verification sections to sharpen up.':'Phishing is designed to fool careful people. Revisit all sections before retaking the quiz.';
+  vis.add(4);
+  document.getElementById('pb').style.width='100%';
+  document.getElementById('pt').textContent='100% complete';
+  document.getElementById('pm').textContent='5 / 5 sections';
+}
+function reset(){cur=0;sc=0;ans=0;document.getElementById('qa').style.display='';document.getElementById('sa').style.display='none';load();}
+load();
+</script>
