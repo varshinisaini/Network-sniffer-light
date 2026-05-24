@@ -14,8 +14,7 @@
   --border2:#a0b8e0;
   --green:#007a3d;
   --green-bg:#e6f7ef;
-  --cyan:#0066cc;  cd $env:USERPROFILE\Downloads
-  python -m http.server 8000
+  --cyan:#0066cc;
   --cyan-bg:#e6f0ff;
   --amber:#b35c00;
   --amber-bg:#fff3e0;
@@ -165,7 +164,7 @@ function startScan(){
   const ip=document.getElementById('ip-input').value.trim();
   if(!ip){alert('Please enter a target IP address.');return;}
   if(!isValidIP(ip)){alert('Invalid IP address. Example: 192.168.1.1');return;}
-  document.getElementById('log-area').innerHTML='';  aabd5ea (HEAD -> main, origin/main) Add network sniffer light  aabd5ea (HEAD -> main, origin/main) Add network sniffer light  aabd5ea (HEAD -> main, origin/main) Add network sniffer light
+  document.getElementById('log-area').innerHTML='';
   total=tcp=udp=icmp=bytes=0;
   ['s-total','s-tcp','s-udp','s-icmp','s-bytes'].forEach(id=>document.getElementById(id).textContent='0');
   document.getElementById('scan-btn').style.display='none';
